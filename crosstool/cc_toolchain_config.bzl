@@ -990,6 +990,11 @@ def _impl(ctx):
                     ),
                 ],
             ),
+            flag_set(
+                actions = _DYNAMIC_LINK_ACTIONS,
+                flag_groups = [flag_group(flags = ["-dead_strip"])],
+                with_features = [with_feature_set(features = ["opt"])],
+            ),
         ],
     )
 
@@ -2001,14 +2006,9 @@ def _impl(ctx):
         flag_sets = [
             flag_set(
                 actions = _DYNAMIC_LINK_ACTIONS,
-                flag_groups = [
-                    flag_group(
-                        flags = ["-dead_strip"],
-                    ),
-                ],
+                flag_groups = [flag_group(flags = ["-dead_strip"])],
             ),
         ],
-        requires = [feature_set(features = ["opt"])],
     )
 
     oso_prefix_feature = feature(
